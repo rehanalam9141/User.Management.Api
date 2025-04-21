@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Org.BouncyCastle.Asn1.Ocsp;
 using User.Management.Service.Models;
+using User.Management.Service.Models.Authentication.Login;
 using User.Management.Service.Models.Authentication.SignUp;
 using User.Management.Service.Models.Authentication.User;
 
@@ -73,5 +74,56 @@ public class UserManagement : IUserManagement
             }
         }
         return new ApiResponse<List<string>> { IsSuccess = true, StatusCode = 200, Message = "Assigned roles successfully", Response = assignedRole };
+    }
+
+    public async Task<ApiResponse<LoginOtpResponse>> GetOtpByLoginAsync(LoginModel loginModel)
+    {   
+        var user = await _userManager.FindByNameAsync(loginModel.Username);
+        if (user != null)
+        {
+            await _signInManager.SignOutAsync();
+            await _signInManager.PasswordSignInAsync(user, loginModel.Password, false, true);
+            if (user.TwoFactorEnabled)
+            {
+                var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
+                return new ApiResponse<LoginOtpResponse>
+                {
+                    Response = new LoginOtpResponse()
+                    {
+                        User = user,
+                        Token = token,
+                        IsTwoFactorEnable = user.TwoFactorEnabled
+                    },
+                    IsSuccess = true,
+                    StatusCode = 200,
+                    Message = $"OTP send to the email {user.Email}"
+                };
+
+            }
+            else
+            {
+                return new ApiResponse<LoginOtpResponse>
+                {
+                    Response = new LoginOtpResponse()
+                    {
+                        User = user,
+                        Token = string.Empty,
+                        IsTwoFactorEnable = user.TwoFactorEnabled
+                    },
+                    IsSuccess = true,
+                    StatusCode = 200,
+                    Message = $"2FA is not enabled"
+                };
+            }
+        }
+        else
+        {
+            return new ApiResponse<LoginOtpResponse>
+            {
+                IsSuccess = false,
+                StatusCode = 404,
+                Message = $"User doesnot exist."
+            };
+        }
     }
 }

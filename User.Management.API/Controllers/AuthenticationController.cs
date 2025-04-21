@@ -91,56 +91,55 @@ public class AuthenticationController : ControllerBase
     [Route("Login")]
     public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
     {
-        // checking the user name
-        var user = await _userManager.FindByNameAsync(loginModel.Username);
-        if (user.TwoFactorEnabled)
-        {
-            await _signInManager.SignOutAsync();
-            await _signInManager.PasswordSignInAsync(user, loginModel.Password, false, true);
-            var token = await _userManager.GenerateTwoFactorTokenAsync(user,"Email");
-            var message  = new Message(new string[] { user.Email! }, "OTP Confirmation",token);
-            _emailService.SendEmail(message);
-            
-            // Add OTP to response header (only visible in browser dev tools)
-            //Response.Headers.Add("X-Dev-OTP", token);
-            
-            return StatusCode(StatusCodes.Status200OK, new 
-            {
-                status = "Success", 
-                message = $"OTP sent to your email {user.Email}",
-                OTP = token
-            });
-        }
-        // checking the password
-        if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
-        {
-            //create claim list
-            var authClaims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            };
+        var loginOtpResponse = await _user.GetOtpByLoginAsync(loginModel);
 
-            //we add roles to the  list
-            var userRoles = await _userManager.GetRolesAsync(user);
-            foreach (var role in userRoles)
+        if (loginOtpResponse.Response!=null)
+        {
+            var user = loginOtpResponse.Response.User;
+            if (user.TwoFactorEnabled)
             {
-                authClaims.Add(new Claim(ClaimTypes.Role, role));
+                var token = loginOtpResponse.Response.Token;
+                var message  = new Message(new string[] { user.Email! }, "OTP Confirmation",token);
+                _emailService.SendEmail(message);
+                return StatusCode(StatusCodes.Status200OK, new Response
+                {
+                    IsSuccess = loginOtpResponse.IsSuccess,
+                    status = "Success", 
+                    message = $"OTP sent to your email {user.Email}",
+                });
             }
-            
-            //generate the token with the claim
-
-            var jwtToken = GetToken(authClaims);
-
-            //return the token
-            
-            return Ok( new
+            // checking the password
+            if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
             {
-                token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
-                expiration = jwtToken.ValidTo
-            });
-        }
+                //create claim list
+                var authClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
 
+                //we add roles to the  list
+                var userRoles = await _userManager.GetRolesAsync(user);
+                foreach (var role in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, role));
+                }
+            
+                //generate the token with the claim
+
+                var jwtToken = GetToken(authClaims);
+
+                //return the token
+            
+                return Ok( new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                    expiration = jwtToken.ValidTo
+                });
+            }
+
+        }
+       
         return Unauthorized();
         
     }
