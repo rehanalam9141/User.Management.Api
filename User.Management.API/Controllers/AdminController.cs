@@ -1,0 +1,16 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace User.Management.API.Controllers;
+[Authorize(Roles = "Admin")]
+[Route("api/[controller]")]
+[ApiController]
+public class AdminController : ControllerBase
+{
+    // GET
+    [HttpGet("employees")]
+    public IEnumerable<string> Get()
+    {
+        return new List<string>{"Rehan","Ahmad","Suhaib","Imran"};
+    }
+}
