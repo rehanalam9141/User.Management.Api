@@ -1,0 +1,15 @@
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/bin/Debug/net8.0/User.Management.Data.deps.json
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/bin/Debug/net8.0/User.Management.Data.runtimeconfig.json
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/bin/Debug/net8.0/User.Management.Data.dll
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/bin/Debug/net8.0/User.Management.Data.pdb
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.csproj.AssemblyReference.cache
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.AssemblyInfoInputs.cache
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.AssemblyInfo.cs
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.csproj.CoreCompileInputs.cache
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.sourcelink.json
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.dll
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/refint/User.Management.Data.dll
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.pdb
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/User.Management.Data.genruntimeconfig.cache
+/Users/macos/RiderProjects/User.Management.API/User.Management.Data/obj/Debug/net8.0/ref/User.Management.Data.dll
