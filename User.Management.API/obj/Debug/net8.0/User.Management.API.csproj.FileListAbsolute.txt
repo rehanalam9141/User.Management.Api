@@ -54,3 +54,4 @@
 /Users/macos/RiderProjects/User.Management.API/User.Management.API/obj/Debug/net8.0/User.Management.API.pdb
 /Users/macos/RiderProjects/User.Management.API/User.Management.API/obj/Debug/net8.0/User.Management.API.genruntimeconfig.cache
 /Users/macos/RiderProjects/User.Management.API/User.Management.API/obj/Debug/net8.0/ref/User.Management.API.dll
+/Users/macos/RiderProjects/User.Management.API/User.Management.API/obj/Debug/net8.0/User.Management.API.sourcelink.json

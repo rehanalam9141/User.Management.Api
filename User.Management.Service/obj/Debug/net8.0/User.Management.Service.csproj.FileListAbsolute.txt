@@ -10,3 +10,4 @@
 /Users/macos/RiderProjects/User.Management.API/User.Management.Service/obj/Debug/net8.0/refint/User.Management.Service.dll
 /Users/macos/RiderProjects/User.Management.API/User.Management.Service/obj/Debug/net8.0/User.Management.Service.pdb
 /Users/macos/RiderProjects/User.Management.API/User.Management.Service/obj/Debug/net8.0/ref/User.Management.Service.dll
+/Users/macos/RiderProjects/User.Management.API/User.Management.Service/obj/Debug/net8.0/User.Management.Service.sourcelink.json

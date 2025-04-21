@@ -23,4 +23,8 @@
       <ProjectReference Include="..\User.Management.Service\User.Management.Service.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ReferencePathWithRefAssemblies Update="\Users\macos\.nuget\packages\microsoft.aspnetcore.identity.entityframeworkcore\6.0.10\lib\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll" />
+    </ItemGroup>
+
 </Project>
