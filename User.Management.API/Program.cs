@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using User.Management.API.Models;
+using User.Management.Data.Models;
 using User.Management.Service.Models;
 using User.Management.Service.Services;
 

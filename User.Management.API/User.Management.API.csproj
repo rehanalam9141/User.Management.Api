@@ -7,19 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
-
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
 
+<!--        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />-->
+<!--        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5" />-->
+    
 
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\User.Management.Data\User.Management.Data.csproj" />
       <ProjectReference Include="..\User.Management.Service\User.Management.Service.csproj" />
     </ItemGroup>
 
