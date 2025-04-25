@@ -977,7 +977,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.10",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.10",
-          "NETCore.MailKit": "2.1.0"
+          "NETCore.MailKit": "2.1.0",
+          "User.Management.Data": "1.0.0"
         },
         "compile": {
           "bin/placeholder/User.Management.Service.dll": {}

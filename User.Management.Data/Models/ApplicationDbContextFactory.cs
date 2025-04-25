@@ -8,16 +8,13 @@ public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applicati
 {
     public ApplicationDbContext CreateDbContext(string[] args)
     {
-        // Manually point to WebAPI folder (your startup project)
-        var basePath = Path.Combine(Directory.GetCurrentDirectory(), "../User.Management.API");
-
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(basePath)
+        var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory()) // API project
             .AddJsonFile("appsettings.json")
             .Build();
 
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-        optionsBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+        optionsBuilder.UseNpgsql(config.GetConnectionString("DefaultConnection"));
 
         return new ApplicationDbContext(optionsBuilder.Options);
     }
